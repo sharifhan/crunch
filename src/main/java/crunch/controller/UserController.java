@@ -19,12 +19,14 @@ public class UserController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     private final UserService userService;
+    private BusinessLogic inputValidator;
     @Autowired HttpServletRequest request;
     
     @Inject
     public UserController(final UserService userService) {
         this.userService = userService;
     }
+    
     
     @RequestMapping("/calculate")
     public User calculateSalary(@RequestParam String email, 
@@ -33,8 +35,8 @@ public class UserController {
     	
     	LOGGER.debug("Calculate net salary for " + request.getRemoteAddr());
     	
-    	
-    	
+    	inputValidator = new BusinessLogic();
+    	inputValidator.validateEamil(email);
     	
     	User user = new User(email, taxyear, gross, "0", request.getRemoteAddr());
     	return userService.save(user);
