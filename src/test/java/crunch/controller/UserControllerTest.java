@@ -55,8 +55,11 @@ public class UserControllerTest {
     
     @Test
     public void IsValidGrossAmount() throws Exception {
-        
-        assertEquals("Validating gross range", true, inputValidator.validateGrossRange("12"));
+    	assertEquals("Validating gross range above limit", false, inputValidator.validateGrossRange("210000"));
+    	assertEquals("Validating gross range lower limit", false, inputValidator.validateGrossRange("0"));    	
+        assertEquals("Validating gross range withing limit", true, inputValidator.validateGrossRange("12"));
+        assertEquals("Validating gross range empty field", false, inputValidator.validateGrossRange(""));
+        assertEquals("Validating gross range above limit", false, inputValidator.validateGrossRange("210000"));
     }
     
     @Test
