@@ -9,7 +9,7 @@
     <logger name="crunch.test" additivity="false" level="TRACE">
         <appender-ref ref="stdout"/>
     </logger>
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="stdout"/>
     </root>
 </configuration>
