@@ -29,6 +29,25 @@ public class UserControllerTest {
     public void setUp() throws Exception {
         userController = new UserController(userService);
     }
+        
+    
+    @Test
+    public void IsValidEmailAddress() throws Exception {
+        
+        assertEquals("Returned user should come from the service", "", "");
+    }
+    
+    @Test
+    public void IsValidTaxYear() throws Exception {
+        
+        assertEquals("Returned user should come from the service", "", "");
+    }
+    
+    @Test
+    public void IsValidGrossAmount() throws Exception {
+        
+        assertEquals("Returned user should come from the service", "", "");
+    }
     
     @Test
     public void shouldCalculateSalary() throws Exception {
@@ -36,14 +55,10 @@ public class UserControllerTest {
         assertEquals("Returned user should come from the service", "", "");
     }
 
-    private User stubServiceToReturnStoredUser() {
+    @Test
+    public void shouldReturnStoredUser() {
         final User user = UserUtil.createUser();
-        when(userService.save(any(User.class))).thenReturn(user);
-        return user;
-    }
-
-    private void stubServiceToReturnExistingUsers(int howMany) {
-        when(userService.getList()).thenReturn(UserUtil.createUserList(howMany));
+        when(userService.save(any(User.class))).thenReturn(user);        
     }
 
 }

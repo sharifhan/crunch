@@ -13,8 +13,6 @@ import crunch.service.UserService;
 import crunch.service.UserServiceImpl;
 import crunch.util.UserUtil;
 
-import java.util.Collection;
-
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
@@ -42,7 +40,7 @@ public class UserServiceImplTest {
         assertEquals("Returned user should come from the repository", savedUser, returnedUser);
     }
 
-    private User stubRepositoryToReturnUserOnSave() {
+    public User stubRepositoryToReturnUserOnSave() {
         User user = UserUtil.createUser();
         when(userRepository.save(any(User.class))).thenReturn(user);
         return user;
@@ -59,31 +57,10 @@ public class UserServiceImplTest {
         verify(userRepository, never()).save(any(User.class));
     }
 
-    private void stubRepositoryToReturnExistingUser() {
+
+    public void stubRepositoryToReturnExistingUser() {
         final User user = UserUtil.createUser();
         when(userRepository.findOne(user.getId())).thenReturn(user);
-    }
-
-    @Test
-    public void shouldListAllUsers_GivenThereExistSome_ThenTheCollectionShouldBeReturned() throws Exception {
-        stubRepositoryToReturnExistingUsers(10);
-        Collection<User> list = userService.getList();
-        assertNotNull(list);
-        assertEquals(10, list.size());
-        verify(userRepository, times(1)).findAll();
-    }
-
-    private void stubRepositoryToReturnExistingUsers(int howMany) {
-        when(userRepository.findAll()).thenReturn(UserUtil.createUserList(howMany));
-    }
-
-    @Test
-    public void shouldListAllUsers_GivenThereNoneExist_ThenTheEmptyCollectionShouldBeReturned() throws Exception {
-        stubRepositoryToReturnExistingUsers(0);
-        Collection<User> list = userService.getList();
-        assertNotNull(list);
-        assertTrue(list.isEmpty());
-        verify(userRepository, times(1)).findAll();
     }
 
 }
