@@ -19,7 +19,8 @@ public class UserController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     private final UserService userService;
-    private BusinessLogic inputValidator;
+    
+    private BusinessLogic inputValidator = new BusinessLogic();
     @Autowired HttpServletRequest request;
     
     @Inject
@@ -35,15 +36,23 @@ public class UserController {
     	
     	LOGGER.debug("Calculate net salary for " + request.getRemoteAddr());
     	
-    	inputValidator = new BusinessLogic();
-    	inputValidator.validateEamil(email);
-    	
-    	User user = new User(email, taxyear, gross, "0", request.getRemoteAddr());
-    	return userService.save(user);
+    	if(validate(email, taxyear, gross)){
+    		User user = new User(email, taxyear, gross, inputValidator.calculateNetAmount(taxyear, gross), request.getRemoteAddr());
+        	return userService.save(user);
+    	}
+    	    	
+    	return null;
 	
     }
 
-    @ExceptionHandler
+    private boolean validate(String email, String taxyear, String gross) {
+    	
+    	return (inputValidator.validateEamil(email)&&inputValidator.validateGrossRange(gross)&&inputValidator.validateTaxYear(taxyear)) ? true : false;
+		
+	}
+
+
+	@ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
     public String handleUserAlreadyExistsException(UserAlreadyExistsException e) {
         return e.getMessage();
