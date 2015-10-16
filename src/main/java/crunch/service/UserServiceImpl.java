@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 import crunch.domain.User;
-import crunch.exception.UserAlreadyExistsException;
+import crunch.exception.CrunchException;
 import crunch.repository.UserRepository;
 
 import javax.inject.Inject;
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
         LOGGER.debug("Creating {}", user);
         User existing = repository.findOne(user.getId());
         if (existing != null) {
-            throw new UserAlreadyExistsException(
+            throw new CrunchException(
                     String.format("There already exists a user with id=%s", user.getId()));
         }
         return repository.save(user);

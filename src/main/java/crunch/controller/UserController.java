@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import crunch.domain.User;
-import crunch.exception.UserAlreadyExistsException;
+import crunch.exception.CrunchException;
 import crunch.service.UserService;
 
 import javax.inject.Inject;
@@ -34,15 +34,18 @@ public class UserController {
 							 @RequestParam String taxyear,
 							 @RequestParam String gross   ) {
     	
+    	//http://localhost:8080/calculate?email=test@email.com&taxyear=2014/15&gross=120000
+    	
     	LOGGER.debug("Calculate net salary for " + request.getRemoteAddr());
     	
-    	if(validate(email, taxyear, gross)){
-    		User user = new User(email, taxyear, gross, inputValidator.calculateNetAmount(taxyear, gross), request.getRemoteAddr());
-        	return userService.save(user);
+    	
+    	if(!validate(email, taxyear, gross)){
+    		throw new CrunchException(String.format("Invalid input: check email, taxyear and gross amount are valid"));
     	}
-    	    	
-    	return null;
-	
+    	
+    	User user = new User(email, taxyear, gross, inputValidator.calculateNetAmount(taxyear, gross), request.getRemoteAddr());
+    	return userService.save(user);
+    	    
     }
 
     private boolean validate(String email, String taxyear, String gross) {
@@ -54,7 +57,7 @@ public class UserController {
 
 	@ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
-    public String handleUserAlreadyExistsException(UserAlreadyExistsException e) {
+    public String handleUserAlreadyExistsException(CrunchException e) {
         return e.getMessage();
     }
 

@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import crunch.domain.User;
-import crunch.exception.UserAlreadyExistsException;
+import crunch.exception.CrunchException;
 import crunch.repository.UserRepository;
 import crunch.service.UserService;
 import crunch.service.UserServiceImpl;
@@ -52,7 +52,7 @@ public class UserServiceImplTest {
         try {
             userService.save(UserUtil.createUser());
             fail("Expected exception");
-        } catch (UserAlreadyExistsException ignored) {
+        } catch (CrunchException ignored) {
         }
         verify(userRepository, never()).save(any(User.class));
     }
