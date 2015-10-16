@@ -24,8 +24,6 @@
 
     <dependencies>
 
-        <!-- Spring Boot -->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -47,14 +45,10 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- Hibernate validator -->
-
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
-
-        <!-- HSQLDB -->
 
         <dependency>
             <groupId>org.hsqldb</groupId>
@@ -62,15 +56,11 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Guava -->
-
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
         </dependency>
-
-        <!-- Java EE -->
 
         <dependency>
             <groupId>javax.inject</groupId>
@@ -83,9 +73,7 @@
     <build>
 
         <plugins>
-
-            <!-- Spring Boot Maven -->
-
+		
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
