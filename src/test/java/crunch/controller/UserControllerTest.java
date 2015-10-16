@@ -6,15 +6,14 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import crunch.controller.UserController;
 import crunch.domain.User;
 import crunch.service.UserService;
 import crunch.util.UserUtil;
 
-import java.util.Collection;
+
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -23,12 +22,10 @@ public class UserControllerTest {
     @Mock
     private UserService userService;
 
-    private UserController userController;
     private BusinessLogic businessLogic;
 
     @Before
     public void setUp() throws Exception {
-        userController = new UserController(userService);
         businessLogic = new BusinessLogic();
     }
         
