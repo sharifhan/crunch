@@ -40,7 +40,7 @@ public class UserController {
     	
     	
     	if(!validate(email, taxyear, gross)){
-    		throw new CrunchException(String.format("Invalid input: check email, taxyear and gross amount are valid"));
+    		throw new CrunchException(String.format("Invalid input: check email, taxyear and gross amount are valid and not missing."));
     	}
     	
     	User user = new User(email, taxyear, gross, inputValidator.calculateNetAmount(taxyear, gross), request.getRemoteAddr());
