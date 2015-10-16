@@ -65,6 +65,8 @@ public class UserControllerTest {
         assertEquals("Calculating the net amount", "18000", businessLogic.calculateNetAmount("2014/15", "20000"));
         assertEquals("Calculating the net amount", "35492", businessLogic.calculateNetAmount("2014/15", "41865"));
         assertEquals("Calculating the net amount", "36028", businessLogic.calculateNetAmount("2015/16", "42385"));
+        assertEquals("Calculating the net amount", "58373", businessLogic.calculateNetAmount("2014/15", "80000"));
+        assertEquals("Calculating the net amount", "82373", businessLogic.calculateNetAmount("2014/15", "120000"));
     }
 
     @Test

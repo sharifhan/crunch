@@ -30,7 +30,7 @@ public class UserController {
     
     
     @RequestMapping("/calculate")
-    public User calculateSalary(@RequestParam String email, 
+    public String calculateSalary(@RequestParam String email, 
 							 @RequestParam String taxyear,
 							 @RequestParam String gross   ) {
     	
@@ -44,7 +44,8 @@ public class UserController {
     	}
     	
     	User user = new User(email, taxyear, gross, inputValidator.calculateNetAmount(taxyear, gross), request.getRemoteAddr());
-    	return userService.save(user);
+    	userService.save(user);
+    	return "For earning £" + user.getGross() + " during the tax year " + user.getTaxyear() + " you'll pay £" + (Long.parseLong(user.getGross()) - Long.parseLong(user.getNet())) + " tax. And you'r take home amount is £" + user.getNet();
     	    
     }
 

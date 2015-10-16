@@ -35,7 +35,6 @@ public class UserServiceImplTest {
         final User savedUser = stubRepositoryToReturnUserOnSave();
         final User user = UserUtil.createUser();
         final User returnedUser = userService.save(user);
-        // verify repository was called with user
         verify(userRepository, times(1)).save(user);
         assertEquals("Returned user should come from the repository", savedUser, returnedUser);
     }
