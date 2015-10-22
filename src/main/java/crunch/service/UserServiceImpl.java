@@ -17,7 +17,14 @@ import javax.validation.constraints.NotNull;
 @Service
 @Validated
 public class UserServiceImpl implements UserService {
-
+	
+	/*
+	 * In-Memory database implementation of the service to save the user in DB
+	 * 
+	 * The data is not persisted and lost when the application terminates 
+	 * 
+	 * */
+	
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository repository;
 

@@ -11,7 +11,10 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 @ComponentScan
 public class Application extends SpringBootServletInitializer {
-
+	/*
+	 * Main method to launch the rest application.
+	 * 
+	 * */
     public static void main(final String[] args) {
         SpringApplication.run(Application.class, args);
     }

@@ -20,6 +20,11 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceImplTest {
 
+	/*
+	 * Unit tests should be written to ensure correct functionality of code
+	 * 
+	 * */
+	
     @Mock
     private UserRepository userRepository;
 

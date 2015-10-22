@@ -6,7 +6,10 @@ import java.util.List;
 import crunch.domain.User;
 
 public class UserUtil {
-
+	/*
+	 * Tests utils for storing user into database
+	 * 
+	 * */
     private static final String ID = "id";
     private static final String EMAIL = "email";
     private static final String TAXYEAR = "taxyear";

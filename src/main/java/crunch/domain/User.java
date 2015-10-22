@@ -12,6 +12,12 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class User {
+	
+	/*
+	 * Schema for storing user and request in the database
+	 * 
+	 * */
+	
 	@Id   
     @NotNull
     @Size(max = 64)
